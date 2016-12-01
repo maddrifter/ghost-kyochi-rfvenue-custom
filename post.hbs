@@ -1,0 +1,82 @@
+{{! Kyochi v1.4, Copyright 2014, Cloud Eight, http://www.cloud-eight.com }}
+
+
+{{! Pull default.hbs markup - DO NOT REMOVE }}
+	{{!< default}}
+
+
+{{! Entry }}
+	<main id="template-post" class="clearfix" role="main" itemscope itemtype="http://schema.org/Article">
+		{{#post}}
+
+			{{! Post }}
+				<article class="{{#if @odd}} odd{{else}} even{{/if}}{{#if @first}} first{{/if}}{{#if @last}} last{{/if}}">
+					<div class="container bm-larger tm-larger animate-in" data-anim-type="fade-in" data-anim-delay="200">
+						<div class="one-whole bm-remove {{post_class}}">
+							{{! Article Info }}
+								<div class="clearfix">
+									<div class="one-whole desktop-tablet omega bm-small">
+										<h1 class="bm-remove">{{{title}}}</h1>
+									</div>
+									<div class="one-whole desktop-tablet alpha last bm-small">
+										<h6 class="bm-remove post-date"><time datetime="{{date format='DD-MM-YYYY'}}">{{date format="DD MMM YYYY"}}</time></h6>
+									</div>
+								</div>
+								<div class="article-body" itemprop="articleBody">{{content}}</div>
+						</div>
+						{{! Other Section : Author, Comments, Related Articles}}
+						<div id="info-section" class="one-whole"> 
+							{{! Author, Comments}}
+							<div class="two-third-percent">
+								{{! Author }}
+								{{#if author}}
+									{{#author}}
+										<div class="author animate-in" itemprop="author" itemscope itemtype="http://schema.org/Person" data-anim-type="fade-in" data-anim-delay="200">
+											<div class="one-whole bm-remove author-bio">									
+
+												{{#if image}}<a href="{{url}}" target="_self" class="author-image"><img src="{{image}}" alt="{{name}} Image" /></a>{{/if}}
+
+												<div class="author-details">
+													<p class="bm-small" itemprop="name"><strong><a href="{{url}}" target="_self">{{name}}</a></strong></p>
+
+													<p class="bm-small">
+														{{#if location}}<i class="fa fa-map-marker fa-fw"></i> &nbsp;<a href="https://maps.google.com/maps?q={{location}}" target="_blank">{{location}}</a> &nbsp;&nbsp;{{/if}}<br class="split-br" />
+														{{#if website}}<i class="fa fa-laptop fa-fw"></i> &nbsp;<a href="{{website}}" target="_blank">Website</a>{{/if}}
+													</p>
+
+													<p class="bm-remove">{{bio}}</p>
+												</div>
+											</div>
+										</div>
+									{{/author}}
+								{{/if}}
+								{{! Comments }}
+								<div id="comment-plugin" class="animate-in" data-anim-type="fade-in" data-anim-delay="200">
+									<div class="one-whole bm-remove comments">
+										<div class="fb-comments" data-href="{{url absolute="true"}}" data-numposts="5" data-colorscheme="light"></div>
+										<div id="disqus_thread"></div>
+									</div>
+								</div>
+							</div>
+							{{! Related Articles}}
+							<div class="one-third-percent">
+								<div class="related-articles"> 
+									<h1>You May Also Like:</h1>
+									{{#foreach posts}}
+										<h2><a href="{{url}}" target="_self">{{{title}}}</a></h2>
+									{{/foreach}}
+								</div>
+							</div>
+						</div>
+				
+					</div>
+				</article>	
+
+			 	{{!! Pagination }}
+				<div class="container bm-larger tm-larger pagination-container animate-in" data-anim-type="fade-in">
+					<div class="one-whole bm-remove">
+						<a href="javascript:history.go(-1)" target="_self" class="button text-uppercase">Return To Previous Page</a>
+					</div>
+				</div>
+		{{/post}}
+	</main>

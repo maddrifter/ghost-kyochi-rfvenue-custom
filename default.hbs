@@ -1,0 +1,474 @@
+{{! Kyochi v1.4, Copyright 2014, Cloud Eight, http://www.cloud-eight.com }}
+
+
+<!DOCTYPE html>
+
+<!-- Kyochi v1.4, Copyright 2014, Cloud Eight, http://www.cloud-eight.com -->
+
+<!--[if lt IE 7 ]><html class="no-js ie ie6 " lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie ie8" lang="en"><![endif]-->
+<!--[if IE 9 ]><html class="no-js ie ie9" lang="en"><![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en" class="no-js"><!--<![endif]-->
+
+<head data-placeholder-focus="false" data-placeholder-live="false">
+
+  <title>{{meta_title}}</title>
+
+  {{! Meta Data }}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <meta name="description" content="{{meta_description}}" />
+    <meta name="keywords" content="{{tags}}" />
+    {{#if author}}
+      {{#author}}
+        <meta name="author" content="{{name}}" />
+      {{/author}}
+    {{else}}
+      <meta name="author" content="Alex Milne, RF Venue" />
+    {{/if}}
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+
+
+  {{! Facebook OpenGraph }}
+    <meta property="og:site_name" content="{{@blog.title}}">
+
+    {{#if post}}
+      {{#post}}
+        <meta property="og:type" content="article">
+        <meta property="article:published_time" content="{{date format='YYYY-MM-DD, hh:mm:ss'}}">
+        {{#if author}}<meta property="article:author" content="{{@blog.url}}{{#author}}{{url}}{{/author}}">{{/if}}
+        {{#if tags}}{{#foreach tags}}<meta property="article:tag" content="{{name}}">{{/foreach}}{{/if}}
+        <meta property="og:url" content="{{url absolute='true'}}" />
+        <meta property="og:title" content="{{{title}}}" />
+        <meta property="og:description" content="{{excerpt}}" />
+        <meta property="og:image" content="{{@blog.logo}}" />
+      {{/post}}
+    {{else}}
+      {{#if author}}
+        {{#author}}
+          <meta property="og:type" content="profile">
+          {{! Currently no way to separate first/last names within Ghost for each property }}
+            {{! <meta property="profile:first_name" content=""> }}
+            {{! <meta property="profile:last_name" content=""> }}
+          {{! Currently no way to attach a gender to an author within Ghost }}
+            {{! <meta property="profile:gender" content=""> }}
+          <meta property="og:url" content="{{url absolute='true'}}" />
+          <meta property="og:title" content="{{name}} - {{@blog.title}}" />
+          <meta property="og:description" content="{{bio}}" />
+          <meta property="og:image" content="{{@blog.url}}{{image}}" />
+        {{/author}}
+      {{else}}
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{@blog.url}}" />
+        <meta property="og:title" content="{{@blog.title}}" />
+        <meta property="og:description" content="{{@blog.description}}" />
+        <meta property="og:image" content="{{@blog.logo}}" />
+      {{/if}}
+    {{/if}}
+
+
+  {{! Twitter Card }}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@sites_twitter_handle"> {{! Replace with your company/websites Twitter handle }}
+
+    {{#if post}}
+      {{#post}}
+        {{! Currently no way to attach a Twitter handle to an author within Ghost }}
+          {{! <meta name="twitter:creator" content=""> }}
+        <meta name="twitter:title" content="{{{title}}}">
+        <meta name="twitter:description" content="{{excerpt}}">
+        <meta name="twitter:image:src" content="{{@blog.logo}}">
+      {{/post}}
+    {{else}}
+      {{#if author}}
+        {{#author}}
+          {{! Currently no way to attach a Twitter handle to an author within Ghost }}
+            {{! <meta name="twitter:creator" content=""> }}
+          <meta name="twitter:title" content="{{name}} - {{@blog.title}}">
+          <meta name="twitter:description" content="{{bio}}">
+          <meta name="twitter:image:src" content="{{@blog.url}}{{image}}"> {{! To use the cover photo instead, use 'cover' instead of 'image' in the content value }}
+        {{/author}}
+      {{else}}
+        <meta name="twitter:title" content="{{@blog.title}}">
+        <meta name="twitter:description" content="{{@blog.description}}">
+        <meta name="twitter:image:src" content="{{@blog.logo}}">
+      {{/if}}
+    {{/if}}
+
+
+  {{! Favicons and Apple Icons }}
+    <link href="{{asset "images/fav-icon.png"}}" rel="icon" />
+    <link href="{{asset "images/app-icon-60.png"}}" rel="apple-touch-icon" />
+    <link href="{{asset "images/app-icon-76.png"}}" rel="apple-touch-icon" sizes="76x76" />
+    <link href="{{asset "images/app-icon-120.png"}}" rel="apple-touch-icon" sizes="120x120" />
+    <link href="{{asset "images/app-icon-152.png"}}" rel="apple-touch-icon" sizes="152x152" />
+
+
+  {{! Stylesheets }}
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="http://fonts.googleapis.com/css?family=Varela+Round|Gafata|Flamenco|Carrois+Gothic+SC" rel="stylesheet" type="text/css" media="all" />
+
+    <link href="{{asset "css/normalize.css"}}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{asset "css/tipsy.css"}}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{asset "css/animations.min.css"}}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{asset "css/style.min.css"}}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{asset "css/custom.css"}}" rel="stylesheet" type="text/css" media="all" />
+
+    <!--<link href="{{asset "css/style.less"}}" rel="stylesheet/less" type="text/css" media="all" />
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/less.js/1.7.5/less.min.js" type="text/javascript"></script>-->
+
+
+  {{! JavaScript }}
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+
+    <script>window.jQuery || document.write('<script src="{{asset "js/cdn-fallback-jquery.min.js"}}"><\/script>');</script>
+    <script>window.jQuery.ui || document.write('<script src="{{asset "js/cdn-fallback-jquery-ui.min.js"}}"><\/script>');</script>
+
+    <!-- <script src="{{asset "js/smoothscroll.min.js"}}" type="text/javascript"></script> -->
+    <script src="{{asset "js/placeholders.min.js"}}" type="text/javascript"></script>
+    <script src="{{asset "js/tipsy.min.js"}}" type="text/javascript"></script>
+    <script src="{{asset "js/appear.min.js"}}" type="text/javascript"></script>
+    <script src="{{asset "js/animations.min.js"}}" type="text/javascript"></script>
+    <script src="{{asset "js/fitvids.min.js"}}" type="text/javascript"></script>
+    <script src="{{asset "js/backbone.js"}}" type="text/javascript"></script>
+
+
+  {{! HTML5 SHIV and Media Query Polyfill }}
+    <!--[if lt IE 9]>
+      <script src="http://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="http://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+
+      <script>window.html5 || document.write('<script src="{{asset "js/cdn-fallback-html5-shiv.min.js"}}"><\/script>');</script>
+      <script>window.respond || document.write('<script src="{{asset "js/cdn-fallback-respond.min.j"}}"><\/script>');</script>
+    <![endif]-->
+
+
+  {{! Google Analytics }}
+
+
+
+  {{! Ghost Head Outputs }}
+    {{ghost_head}}
+
+
+
+
+    <!-- HitsLink.com tracking script -->
+    <script type="text/javascript" id="wa_u" defer></script>
+    <script type="text/javascript" async>//<![CDATA[
+    var wa_pageName=location.pathname;    // customize the page name here;
+    wa_account="ADB9DFA99A918A9A"; wa_location=102;
+    wa_MultivariateKey = '';    //  Set this variable to perform multivariate testing
+    var wa_c=new RegExp('__wa_v=([^;]+)').exec(document.cookie),wa_tz=new Date(),
+    wa_rf=document.referrer,wa_sr=location.search,wa_hp='http'+(location.protocol=='https:'?'s':'');
+    if(top!==self){wa_rf=top.document.referrer;wa_sr=top.location.search}
+    if(wa_c!=null){wa_c=wa_c[1]}else{wa_c=wa_tz.getTime();
+    document.cookie='__wa_v='+wa_c+';path=/;expires=1/1/'+(wa_tz.getUTCFullYear()+2);}wa_img=new Image();
+    wa_img.src=wa_hp+'://counter.hitslink.com/statistics.asp?v=1&s=102&eacct='+wa_account+'&an='+
+    escape(navigator.appName)+'&sr='+escape(wa_sr)+'&rf='+escape(wa_rf)+'&mvk='+escape(wa_MultivariateKey)+
+    '&sl='+escape(navigator.systemLanguage)+'&l='+escape(navigator.language)+
+    '&pf='+escape(navigator.platform)+'&pg='+escape(wa_pageName)+'&cd='+screen.colorDepth+'&rs='+escape(screen.width+
+    ' x '+screen.height)+'&je='+navigator.javaEnabled()+'&c='+wa_c+'&tks='+wa_tz.getTime()
+    ;document.getElementById('wa_u').src=wa_hp+'://counter.hitslink.com/track.js';//]]>
+    </script>
+
+</head>
+
+<body class="{{body_class}} clearfix" itemscope itemtype="http://schema.org/WebPage">
+     <div id="search-form">
+        <i id="icon-exit-search" class="fa fa-times fa-3x" aria-hidden="true"></i>
+        <form>
+          <input type="text" placeholder="Search Audio Gloss." autofocus>
+          <button type="button">SEARCH</button> 
+        </form>
+     </div>
+     <script type="text/javascript">
+        document.getElementById("icon-exit-search").addEventListener('click', exitSearch);
+        function exitSearch(){          
+          var formDiv =  document.getElementById("search-form");
+          document.querySelector("#search-form input").value = "";
+          formDiv.style.display = 'none';
+          document.querySelector('body').style.overflowY = 'auto';
+        }
+        document.querySelector("#search-form button").addEventListener('click', startSearch);
+        function startSearch() {
+          var searchString = document.querySelector("#search-form input").value;
+          if (searchString != ""){
+            console.log();
+            exitSearch();
+          }
+        }
+     </script>
+
+  {{! Facebook API }}
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+
+  {{! Header }}
+    <nav>
+      <div id="touch-navigation-top" class="text-center">
+        <a href="#" target="_self" id="navigation-toggle-top"><img src="/assets/images/logo-black.png" alt="home" class="touch-header-nav-logo"><i class="fa fa-angle-down fa-fw"></i></a>
+
+        <div id="menu-slide-top">
+          <hr class="bm-small" />
+
+          <ul class="unstyled bm-remove links"></ul>
+          <ul class="unstyled bm-remove">
+            <li><hr></li>
+            <li>Sign up for updates</li>
+
+          </ul>
+          <div class="touch-subscribe">
+
+              <script charset="utf-8" src="//js.hsforms.net/forms/current.js"></script>
+              <script>
+              var winWidth = $(window).width();
+
+              if(winWidth < 981){
+
+                hbspt.forms.create({
+                  portalId: '316692',
+                  formId: 'c533e5a5-327a-4991-b231-1ce113617f31',
+                  css: '.hs-form.stacked label {display: none} .hs_email.hs-form-field .input {width: 100%;} .hs-input {margin-bottom: 0; width: 100% !important; text-align: center} .hs-form-field {min-width: 400px; margin-top: 30px}'
+                });
+              }
+              </script>
+          </div>
+
+
+
+          <hr class="tm-small bm-small" />
+
+          <ul class="unstyled inline inline-block bm-remove social-networks">
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="no-touch-navigation-top" class="one-whole-percent bm-remove">
+      <div class="one-third-percent left-area">
+        <ul class="unstyled">
+          <li>
+            <div class="dropDownBox">
+               <a class="more-about">More about RF Venue. Inc <i class="fa fa-angle-down"></i></a>
+               <ul id = "drop-down-menu">
+                <li><a href="http://www.rfvenue.com" target="_blank">About RF Venue</a></li>
+                <li><a href="http://www.rfvenue.com/antennas" target="_blank">Hardware Products</a></li>
+                <li><a href="http://www.rfvenue.com/vantagel" target="_blank">Software Products</a></li>
+               </ul>
+            </div>             
+          </li>
+         
+          <li><a class="nav-logo-link" href="http://www.rfvenue.com" target="_rfv"><img src="/assets/images/logo.png" alt="home" class="header-nav-logo"></a></li>
+        </ul>
+
+        <script type="text/javascript">
+           var classes = document.getElementsByClassName("dropDownBox");
+           classes[0].addEventListener('mouseover', showDropDown);
+           classes[0].addEventListener('mouseout', hideDropDown);
+
+         function showDropDown() {
+            var dropDownMenu = document.getElementById("drop-down-menu");
+            var linkButtons = document.getElementsByClassName("more-about");
+
+            dropDownMenu.style.display = 'block'; 
+            linkButtons[0].style.color = 'white';
+            linkButtons[0].style.background = 'rgba(29, 240, 68, 0.54)';                 
+         }
+
+         function hideDropDown(){
+            var dropDownMenu = document.getElementById("drop-down-menu");
+            var linkButtons = document.getElementsByClassName("more-about");
+
+            dropDownMenu.style.display = 'none';
+            linkButtons[0].style.color = '#1df044';
+            linkButtons[0].style.background = 'transparent';    
+         }    
+
+        </script>
+
+      </div>
+      <div class="two-third-percent right-area">
+        <div class="contact-form">
+          <ul class="unstyled inline bm-remove">
+            <li>
+              <script>
+                hbspt.forms.create({
+                  portalId: '316692',
+                  formId: '8462eebf-8d92-46a4-afd2-0e12062dda44',
+                  css: '.hs-form.stacked label {display: none} .hs_email.hs-form-field .input {float:left; margin-right: 10px} .hs-input {margin-bottom: 0} .hs-form-field {min-width: 440px; margin-top: 30px}'
+                });
+              </script>
+            </li>
+            <li class="search-icon">              
+              <a target="_self" href="#" id="a-article-search"><i class="fa fa-search fa-2x" aria-hidden="false"></i></a>               
+            </li>
+
+          </ul>
+          <script type="text/javascript">
+          /*(function() {
+            $('.search-icon > a').click(function(e) {
+              console.log('=====');
+              e.preventDefault();
+             document(this).next('.search-form').show();
+            });
+          }(document)); */  
+           document.getElementById("a-article-search").addEventListener("click", aClick);
+
+           function aClick(){
+             var searchForm = document.getElementById("search-form");
+             searchForm.style.display = 'block';
+             document.querySelector('body').style.overflowY = 'hidden';
+           } 
+
+
+          </script>
+          <div class="hyperlinks">
+          {{!-- <ul class="unstyled inline bm-remove links">
+            <li><a href="{{ @blog.url }}" target="_self">Blog Home</a></li>
+            <li><a href="http://www.rfvenue.com/antennas" target="_rfv">Antennas</a></li>
+            <li><a href="http://www.rfvenue.com/distribution-equipment" target="_rfv">Distribution</a></li>
+            <li><a href="http://www.rfvenue.com/contact-us" target="_rfv">Contact</a></li>
+            <li><a href="http://www.rfvenue.com/store-homepage" target="_rfv">Store</a></li>
+          </ul> --}}
+
+            <ul class="unstyled inline bm-remove links">
+              <li><a href="/tag/wireless-how-to" target="_self">Wireless How-To</a></li>
+              <li><a href="/tag/spectrum-explained" target="_self">Spectrum Explained</a></li>
+              <li><a href="/tag/rf-investigations" target="_self">RF Investigations</a></li>
+              <li><a href="/tag/dope-gigs" target="_self">Dop &amp; Gigs</a></li>
+              <li><a href="/tag/advanced-wireless-made-easy" target="_self">Advanced Wireless Made Easy</a></li>
+            </ul>
+        </div>
+        </div>
+        
+      </div>
+    </div>
+    <header>
+      <div class="clearfix">
+        <div id="header" class="one-whole-percent bm-remove text-center" {{#if @blog.cover}}style="background-image: url({{@blog.cover}});"{{/if}}>
+          <div id="logo-description" class="center-vert">
+            <a href="{{@blog.url}}" target="_self">
+              {{#if @blog.logo}}
+                <p id="logo-img" class="bm-small"><img src="{{@blog.logo}}" alt="{{@blog.title}} - by RF Venue" /></p>
+              {{else}}
+                <p id="logo-text" class="bm-small">{{@blog.title}}</p>
+              {{/if}}
+
+              <p id="blog-description" class="bm-remove">{{@blog.description}}</p>
+            </a>
+          </div>
+
+          {{!-- <div id="scroll-to-content" class="cursor-pointer"><i class="fa fa-angle-down"></i></div> --}}
+
+          {{!-- <nav>
+            <div class="clearfix">
+              <div id="no-touch-navigation" class="one-whole-percent bm-remove text-uppercase">
+                <div class="two-third-percent desktop-tablet bm-remove">
+                  <ul class="unstyled inline bm-remove links">
+                    <li><a href="/tag/wireless-audio" target="_self">Wireless Audio</a></li>
+                    <li><a href="/tag/pro-sound" target="_self">Pro Sound</a></li>
+                    <li><a href="/tag/spectrum-policy" target="_self">Spectrum Policy</a></li>
+                    <li><a href="/tag/knowledge-guides" target="_self">Knowledge &amp; Guides</a></li>
+                    <li><a href="/tag/video" target="_self">Video</a></li>
+                    <li><a href="/tag/miscellanea" target="_self">Misc</a></li>
+                  </ul>
+                </div>
+
+                <div class="one-third-percent desktop-tablet bm-remove last">
+                  <div class="float-right">
+                    <ul class="unstyled inline bm-remove social-networks">
+                      <li><a href="https://www.facebook.com/RFvenue" target="_self" class="tip-t-fade" data-tooltip="Facebook"><i class="fa fa-facebook fa-fw"></i></a></li>
+                      <li><a href="http://twitter.com/RFVenue" target="_self" class="tip-t-fade" data-tooltip="Twitter"><i class="fa fa-twitter fa-fw"></i></a></li>
+                      <li><a href="https://plus.google.com/101286559737629009953/videos" target="_self" class="tip-t-fade" data-tooltip="Google+"><i class="fa fa-google-plus fa-fw"></i></a></li>
+                      <li><a href="mailto:?subject=Checkout Audio Cloud by RF Venue&body=http://blog.rfvenue.com" target="_self" class="tip-t-fade" data-tooltip="Send by Email"><i class="fa fa-envelope fa-fw"></i></a></li>
+                      <li><a href="/rss" target="_self" class="tip-t-fade" data-tooltip="RSS"><i class="fa fa-rss fa-fw"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav> --}}
+        </div>
+      </div>
+    </header>
+
+    {{!-- fo --}}
+
+
+  {{! No JavaScript }}
+    <noscript>
+      <div class="clearfix">
+        <div class="container bm-larger tm-larger text-center">
+          <div id="no-script">
+            <p class="bm-smaller"><strong>JavaScript Disabled</strong></p>
+            <p class="bm-smaller">Certain features of this site may not function correctly without JavaScript enabled</p>
+            <p class="bm-remove"><a href="http://enable-javascript.com/" target="_blank">Find out how to enable JavaScript in your browser</a></p>
+          </div>
+        </div>
+      </div>
+
+      <hr class="bm-remove separator" />
+    </noscript>
+
+
+  {{! Content }}
+    {{{body}}}
+
+  {{!-- Hubspot form --}}
+    <div class="container">
+
+
+    </div>
+
+  {{! Footer }}
+    <footer>
+      <div id="footer" class="one-whole-percent bm-remove text-center">
+        <div class="scroll-to-top cursor-pointer tip-t-fade" data-tooltip="Scroll To Top"><i class="fa fa-chevron-circle-up fa-fw"></i></div>
+
+        <div class="container">
+          Copyright &copy; <a href="/" target="_self">RF Venue</a> {{date format="YYYY"}} &sect; 72 Nickerson Road, Ashland, MA 01721
+        </div>
+      </div>
+    </footer>
+
+  {{! Ghost Footer Outputs }}
+    {{ghost_foot}}
+
+    {{!
+      Using jQuery's no conflict as a workaround to use the version of jQuery we wish to use rather than the jQuery outputted by {ghost_foot}
+      The reason for keeping {ghost_foot} in the document is it may need to be used in future versions
+    }}
+
+    <script>
+      var $ = $.noConflict(true);
+      var $_old = $.noConflict(true);
+    </script>
+    {{!-- Start of Async HubSpot Analytics Code --}}
+    <script type="text/javascript">
+      (function(d,s,i,r) {
+        if (d.getElementById(i)){return;}
+        var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
+        n.id=i;n.src='//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/316692.js';
+        e.parentNode.insertBefore(n, e);
+      })(document,"script","hs-analytics",300000);
+    </script>
+  {{!-- End of Async HubSpot Analytics Code --}}
+
+  <script type="text/javascript"> (function() {var s = document.createElement('script');s.type = 'text/javascript';s.async = true; s.src = document.location.protocol + '//wisepops.com/default/index/get-loader?user_id=10307'; var s2 = document.getElementsByTagName('script')[0];s2.parentNode.insertBefore(s, s2);})(); </script>
+
+</body>
+</html>

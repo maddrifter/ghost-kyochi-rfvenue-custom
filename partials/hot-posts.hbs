@@ -1,0 +1,24 @@
+{{! Kyochi v1.4, Copyright 2014, Cloud Eight, http://www.cloud-eight.com }}
+
+{{! Most popular posts }}
+{{! Hot posts }}
+
+	{{#get "posts" limit="10" include="tags"}}
+	<div id="hot-articles">
+		<h1 class="text-uppercase">Most Popular</h1>
+		{{#foreach posts}}
+			<article class="{{#if @odd}} odd{{else}} even{{/if}}{{#if @first}} first{{/if}}{{#if @last}} last{{/if}}">
+				<div class="article-summary">
+					<h2><a class="text-uppercase" href="{{url}}" target="_self">{{{title}}}</a></h2>
+					{{#if tags}}					
+						{{#foreach tags}}
+							<span>{{name}}  </span>
+						{{/foreach}}					
+					{{else}}
+						<span>Don't  have tag!</span>
+					{{/if}}
+				</div>
+			</article>
+		{{/foreach}}
+	</div>
+	{{/get}}

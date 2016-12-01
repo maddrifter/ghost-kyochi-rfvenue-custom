@@ -1,0 +1,82 @@
+{{! Kyochi v1.4, Copyright 2014, Cloud Eight, http://www.cloud-eight.com }}
+
+{{! Featured Posts Loop }}
+
+	{{!-- <header>
+		<div class="container bm-remove tm-larger">
+			<h1>Recent Posts</h1>
+		</div>
+	</header> --}}
+
+{{! Post Loop }}
+{{!-- {{#get "posts" limit="4" as |recents|}} --}}
+{{#get "posts" limit="4" include="author"}}
+<div id="recent-posts" class="row padding-container">
+
+		{{#foreach posts}}
+			<article class="{{#if @odd}} odd article-odd{{else}} even article-even{{/if}}{{#if @first}} first{{/if}}{{#if @last}} last{{/if}} one-half-percent recent-article">
+				<div class="animate-in full-parent" data-anim-type="fade-in" data-anim-delay="200">
+					<div class="one-whole bm-remove {{post_class}} full-parent">					
+						<div class="desktop-tablet bm-remove omega full-parent">
+							<div class="bm-remove featured-preview">
+								<a href="{{url}}" target="_self" class="block">{{content words="0"}}</a>
+								<div class="description-bar bm-remove"><a href="{{url}}" target="_self">{{title}}</a>
+							</div>
+							
+						</div>
+
+						<div class="desktop-tablet bm-remove alpha last">
+							{{!-- <h1 class="bm-small"><a href="{{url}}" target="_self">{{{title}}}</a></h1>
+							<h6><time datetime="{{date format='DD-MM-YYYY'}}">{{date format="DD MMM YYYY"}}</time></h6> --}}
+
+							<div class="article-body">
+								<p>[meta]{{meta_description words="40"}}&hellip;</p>
+							</div>
+
+							<div class="article-footer">
+								{{! Author }}
+								{{#if author}}
+									{{#author}}
+									<div class="two-third-percent bm-remove author-info">
+										{{#if image}}<a href="{{url}}" target="_self" class="author-image"><img src="{{image}}" alt="{{name}} Image" /></a>{{/if}}
+										
+										<p class="bm-small" itemprop="name"><a href="{{url}}" target="_self">Author {{name}}</a></p>	
+									</div>									
+									{{/author}}
+								{{/if}}
+								<div class="one-third-percent text-right"><a href="{{url}}" target="_self" class="button w-large bm-remove text-uppercase">READ</a></div>
+							</div>						
+						</div>
+					</div>				
+				</div>
+			</article>
+		{{/foreach}}
+ </div>
+ {{/get}}
+{{!--  {{/get}}
+ --}} <div id="featured-posts" class='row padding-container full-parent'>
+ 	{{!-- <header>
+		<div class="container bm-remove tm-small">
+			<h1>Featured Posts</h1>
+		</div>dfsa
+	</header> --}}
+	{{#foreach posts}}
+		{{#if featured }}
+		<article class="padding-middle article{{#if @odd}} odd{{else}} even{{/if}}{{#if @first}} first{{/if}}{{#if @last}} last{{/if}} one-whole-article">
+			<div class="animate-in full-parent" data-anim-type="fade-in" data-anim-delay="200">
+				<div class="row no-padding full-parent desktop-tablet omega {{post_class}}">
+					<div class="featured-preview">						
+						<a href="{{url}}" target="_self" class="block">{{content words="0"}}</a>
+						<div class="left-top-bar"><a class='text-uppercase' href="{{url}}" target="_self">Featured</a></div>
+						<div class="right-bottom-bar"><a href="{{url}}" target="_self">{{title}}</a></div>
+					</div>
+ 				</div>				
+			</div>
+		</article>
+ 		{{/if}}
+	{{/foreach}}
+
+ </div>
+	
+
+	
