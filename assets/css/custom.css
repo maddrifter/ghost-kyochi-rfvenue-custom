@@ -1,5 +1,6 @@
 #header {
-	height: 360px !important;
+	height: 30vw !important;
+	max-height: 360px;
 }
 
 #header #logo-description a #blog-description{
@@ -200,7 +201,7 @@ header {
 }
 
 #header #logo-description {
-	margin-top: 160px;	
+	margin-top: 160px !important;	
 	font-family: 'Helvetica Neue' !important ;
 	font-size: 22px	
 }
@@ -496,7 +497,7 @@ header {
 	font-size: 2vw;
 	font-weight:600;
 	line-height: 4vw;
-	max-width: 500px;
+	max-width: 768px;
 }
 #info-section .related-articles h2 {
 	font-size: 1.6vw;
@@ -506,7 +507,9 @@ header {
 	text-align: left;
 }
 
-@media screen and (max-width: 1268px) {
+
+/*================  width : 768 ~ 1268  ===============*/
+@media screen and (max-width: 1268px) {	
 	#no-touch-navigation-top div.left-area ul {
 		margin-left: 3vw;
 	}
@@ -518,7 +521,6 @@ header {
 		font-size: 17px;
 		line-height: 24px;
 	}
-
 	.padding-container{
 		padding-left:  16vw;
 		padding-right: 8vw;
@@ -529,7 +531,6 @@ header {
 		padding-left: 0px;
 		padding-right: 0px;
 	}	
-
 	#recent-posts div.featured-preview .description-bar a {
 		font-size: 1.7vw;
 	}
@@ -562,15 +563,57 @@ header {
 	}
 	#featured-posts .right-bottom-bar a {	
         font-size: 1.7vw;
-	}     
+	} 
+	#template-index article {
+		margin-bottom: 0px;
+	}
+
+
 }
+@media screen and (max-width: 980px) {
+	#header #logo-description {
+		margin-top: 90px !important;	
+	}
+}
+/*================  Tablet Size : under 768  ===============*/
 @media screen and (max-width: 768px) {
+	#header {
+    	min-height: 150px !important;
+    	height: 30vw !important;
+	}
+	#header #logo-description {
+		margin-top: 8vw !important;	
+		font-size: 3.2vw	
+	}
+	#header #logo-description a {
+		width: 80vw;
+	}
+	#header #logo-description a #logo-text {
+		font-size: 4vw;
+		line-height: 4vw;
+	}
 	#template-index div.row > div.two-third-percent{
 		width: 100%;		
 	}	
-	#template-index div.row div.two-third-percent div#recent-posts {
-		padding : 40px 13vw;
-	}	
+	#template-index div.row > div.one-third-percent{
+		width: 100%;
+		padding : 10px 13vw;
+		padding-bottom: 0px
+	}
+	#hot-articles {
+	    margin:0px;
+	}
+	#hot-articles h1 {
+	    font-size: 5vw;
+    	line-height: 15vw;
+	}
+	#hot-articles .article-summary h2 {
+	    font-size: 3vw;
+	    line-height: 4vw;
+	}
+	#hot-articles .article-summary {
+	    padding: 2px 30px;
+	}
 	#template-index div.row div.two-third-percent div#recent-posts .recent-article {
 		width: 100%;
 		height: 55vw;
@@ -578,6 +621,93 @@ header {
 		padding-right: 0px;
 		margin-top: 4vw;
 	}	
+	#recent-posts div.featured-preview .description-bar a {
+		font-size: 2.5vw;
+	}
+	#recent-posts .article-body p {
+		font-size: 2.3vw;
+	}
+	#recent-posts .article-footer {
+		 height: 7vw;
+	}
+	#recent-posts .author-info .author-image {
+		width: 7vw;
+		border-radius: 7vw;
+	}
+	#recent-posts .author-info p {
+		line-height: 7vw;
+		font-size: 4vw;
+	}
+	#recent-posts .text-right a.button {  
+	    line-height: 5vw;
+	    font-size: 3vw;
+	}
 
+	#featured-posts .one-whole-article {
+	    height: 35vw;
+	}
+	#featured-posts .right-bottom-bar {
+		width: 100%;
+	    height: 30%;
+	    bottom: 0;
+	    position: absolute;
+	    padding: 0 10px;
+	    line-height: 1.4;
+	    min-height: 50px;
+	}
+	#featured-posts .right-bottom-bar a {	
+        font-size: 2.5vw;
+	}    
+	#featured-posts .left-top-bar {    
+    	line-height: 5vw; 
+    }
+    #featured-posts .left-top-bar a {
+	    font-size: 2.6vw;
+	}
+	.padding-container{
+		padding : 10px 13vw;
+		padding-bottom: 0px
+	}
+	/*------------   POST PAGE    ------------*/
+	#template-post #info-section .two-third-percent, #template-post #info-section .one-third-percent {
+		width: 100%;
+	}
+	#template-post #info-section .related-articles h1 {
+	    font-size: 4vw;
+	    line-height: 7vw;
+	}
+	#template-post #info-section .related-articles h2 {
+		font-size: 2.5vw;
+	}
 }
+/*============== Phone Size ===============*/
+@media screen and (max-width: 480px) {
 
+	.padding-container{
+		padding : 5px 4vw;
+		padding-bottom: 0px
+	}
+	#template-index div.row > div.one-third-percent{
+		width: 100%;
+		padding : 10px 4vw;
+		padding-bottom: 0px
+	}
+	#hot-articles h1 {
+	    font-size: 8vw;
+    	line-height: 20vw;
+	}
+	#hot-articles .article-summary h2 {
+	    font-size: 4vw;
+	    line-height: 6vw;
+	}
+	/*------------   POST PAGE    ------------*/
+	#template-post #info-section .related-articles h1 {
+	    font-size: 8vw;
+	    line-height: 12vw;
+	}
+	#template-post #info-section .related-articles h2 {
+		font-size: 4vw;
+		line-height: 6vw;
+		margin-bottom: 12px;
+	}
+}
