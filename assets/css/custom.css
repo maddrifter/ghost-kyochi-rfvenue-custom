@@ -259,7 +259,7 @@ header {
 }*/
 #recent-posts div.featured-preview .description-bar {
 	width: 100%;
-	height: 30%;
+	height: 35%;
 	bottom: 0;
 	position: absolute;
 	background: rgba(7, 8, 7, 0.7);
@@ -304,12 +304,12 @@ header {
 	float: left;
 	margin-right: 14px;
 	width: 2vw;
-	height: 2vw;
+	height: 100%;
 	background-position: center center;
 	background-size: cover;
 	border-radius: 2vw;
 	overflow: hidden;
-	line-height: 2vw
+	line-height: 100%;
 }
 #recent-posts .author-info p {
 	font-family: 'Helvetica Neue';
@@ -389,7 +389,7 @@ header {
 	min-width: 200px;
 	min-height: 100px;
 	width: 50%;
-	height: 35%;
+	height: 30%;
 	bottom: 0;
 	right: 0;
 	background: rgba(7, 8, 7, 0.7);
@@ -397,8 +397,15 @@ header {
 }
 #featured-posts .right-bottom-bar a {
 	color: white;
-	font-size: 1vw;
 	padding: 0 5%;
+	font-family: 'Helvetica Neue';
+    color: white;
+    -webkit-align-items: center;
+    align-items: center;
+    height: 100%;
+    display: -webkit-flex;
+    display: flex;
+    font-size: 1.2vw;
 }
 /*===========  Hot Articles  ===============*/
 #hot-articles {
@@ -511,5 +518,66 @@ header {
 		font-size: 17px;
 		line-height: 24px;
 	}
-	
+
+	.padding-container{
+		padding-left:  16vw;
+		padding-right: 8vw;
+	}
+	#template-index div.row div.two-third-percent div#recent-posts article {
+		width: 100%;
+		height: 35vw;
+		padding-left: 0px;
+		padding-right: 0px;
+	}	
+
+	#recent-posts div.featured-preview .description-bar a {
+		font-size: 1.7vw;
+	}
+	#recent-posts .article-body p {
+		font-size: 1.5vw;
+	}
+	#recent-posts .article-footer {
+		 height: 4vw;
+	}
+	#recent-posts .author-info .author-image {
+		width: 4vw;
+		border-radius: 4vw;
+	}
+	#recent-posts .author-info p {
+		line-height: 4vw;
+		font-size: 2vw;
+	}
+	#recent-posts .text-right a.button {  
+	    line-height: 3vw;
+	    font-size: 2vw;
+	}
+	#featured-posts .right-bottom-bar {
+		width: 100%;
+	    height: 30%;
+	    bottom: 0;
+	    position: absolute;
+	    padding: 0 10px;
+	    line-height: 1.4;
+	    min-height: 50px;
+	}
+	#featured-posts .right-bottom-bar a {	
+        font-size: 1.7vw;
+	}     
 }
+@media screen and (max-width: 768px) {
+	#template-index div.row > div.two-third-percent{
+		width: 100%;		
+	}	
+	#template-index div.row div.two-third-percent div#recent-posts {
+		padding : 40px 13vw;
+	}	
+	#template-index div.row div.two-third-percent div#recent-posts .recent-article {
+		width: 100%;
+		height: 55vw;
+		padding-left: 0px;
+		padding-right: 0px;
+		margin-top: 4vw;
+	}	
+
+}
+
