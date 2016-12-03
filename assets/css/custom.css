@@ -1,6 +1,10 @@
 #header {
 	height: 360px !important;
 }
+
+#header #logo-description a #blog-description{
+	text-transform: none !important;
+}
 #no-touch-navigation-top div.left-area.one-third-percent {
 	margin-bottom: 0px;
 	width : 25%;
@@ -237,7 +241,7 @@ header {
 	left: 0;
 	position: relative;	 
 }
-#recent-posts div.featured-preview a {
+#recent-posts div.featured-preview > a{
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -259,13 +263,18 @@ header {
 	bottom: 0;
 	position: absolute;
 	background: rgba(7, 8, 7, 0.7);
+	padding: 0 10px;
+    line-height: 1.4;
 }
 #recent-posts div.featured-preview .description-bar a {
 	font-family: 'Helvetica Neue';
-	line-height: 2em;
-	font-size: 1.1vw;
-	color: white;
-	margin:0 5px;
+    font-size: 1.1vw;
+    color: white;
+    -webkit-align-items: center;
+    align-items: center;
+    height: 100%;
+    display: -webkit-flex;
+    display: flex;
 }
 
 #recent-posts .article-body p {
@@ -391,7 +400,6 @@ header {
 	font-size: 1vw;
 	padding: 0 5%;
 }
-
 /*===========  Hot Articles  ===============*/
 #hot-articles {
 	border: 1px solid #9f9e9e;
@@ -413,7 +421,6 @@ header {
 #hot-articles .article-summary {
 	padding: 2px 10px;
 	margin-bottom: 1vw;
-
 }
 #hot-articles .article-summary h2 {
 	margin-bottom: 0px;
@@ -421,11 +428,24 @@ header {
 	font-family: 'Helvetica Neue';
 	font-weight: 600;
 }
-
-
 /*==========  Post page  ==========*/
-#template-post div.article-body p img {
+#template-post div.article-body p:first-child img{
 	width: 100%;
+}
+#template-post div.article-body p:first-child {
+	margin-left: 0px;
+	margin-right: 0px
+}
+#template-post div.article-body a {
+	color: #2B2B2B;
+	text-decoration: underline;
+}
+#template-post div.article-body em {
+	color: #2B2B2B;
+}
+#template-post div.article-body > *{
+	margin-left: 6%;
+	margin-right: 6%;
 }
 #template-post .author .author-image{
 	position: relative;
@@ -438,8 +458,8 @@ header {
 	background-size: cover;
 	border-radius: 8vw;
 	overflow: hidden;
-	line-height: 8vw;
-}	
+	line-height: 8vw;	
+}
 #template-post .author-bio {
 	background: transparent;
 	border: none;
@@ -454,7 +474,6 @@ header {
 	padding-top: 20px;
 	border: 1px solid darkgray;	
 }
-
 #info-section .author-details {
 	line-height: 2vw;
 }
@@ -492,4 +511,5 @@ header {
 		font-size: 17px;
 		line-height: 24px;
 	}
+	
 }
