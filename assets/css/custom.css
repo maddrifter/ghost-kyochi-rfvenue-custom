@@ -113,7 +113,12 @@ header {
 	font-family: 'Helvetica Neue';
 }
 
-
+#info-section .two-third-percent {
+	padding-right: 10px;
+}
+#info-section .one-third-percent {
+	padding-left: 20px;
+}
 #search-form{ 
 	width: 100%;
 	height: 100%;
@@ -155,8 +160,9 @@ header {
 	line-height: 2em;
 	margin-top: 40px;
 	font-family: 'Helvetica Neue';
+	height: 50px;
 }
-#search-form button {
+#search-form input[type=submit] {
 	margin: 8vh auto;
 	display: block;
 	color: #1ba407;
@@ -226,7 +232,7 @@ header {
 .article-even {
 	padding-left: 3vw;	
 }
-#recent-posts .one-whole.post {
+#recent-posts .one-whole.post, #results .one-whole.post {
 	padding:0px;
 	border: none;
 	background: transparent;
@@ -235,14 +241,14 @@ header {
 	width: 100%;
 	height: 100%;
 }
-#recent-posts div.featured-preview {
-	height: 65%;
+#recent-posts div.featured-preview,#results div.featured-preview{
+	height: 60%;
 	width: 100%;
 	top: 0;
 	left: 0;
 	position: relative;	 
 }
-#recent-posts div.featured-preview > a{
+#recent-posts div.featured-preview > a, #results div.featured-preview > a {
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -252,13 +258,13 @@ header {
 	height: 100%;*/
 	overflow: hidden;
 }
-#recent-posts .post .featured-preview img {
+#recent-posts .post .featured-preview img,#results .post .featured-preview img  {
 	width: 100%;
 }
 /*#recent-posts div.featured-preview h3 {	
 	margin:0px;
 }*/
-#recent-posts div.featured-preview .description-bar {
+#recent-posts div.featured-preview .description-bar, #results div.featured-preview .description-bar {
 	width: 100%;
 	height: 35%;
 	bottom: 0;
@@ -278,29 +284,35 @@ header {
     display: flex;
 }
 
-#recent-posts .article-body p {
+#recent-posts .article-body p{
 	line-height: 1.2em;
 	font-family: 'Helvetica Neue';
 	font-size: 1vw;
-	margin: 0px 12px
+	margin: 0px 12px;
+	white-space: normal;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-line-clamp: 2;
+	display: -webkit-box;
+    -webkit-box-orient: vertical;    
 }
-#recent-posts div.desktop-tablet.alpha.last {
+#recent-posts div.desktop-tablet.alpha.last, #results div.desktop-tablet.alpha.last {
 	position: relative;
-	height: 35%;
+	height: 40%;
 	margin-top: 0;
 	padding-top: 10px;
 }
-#recent-posts .article-footer {
+#recent-posts .article-footer,  #results .article-footer{
 	width: 100%;
 	height: 2vw;
 	bottom: 0px;
 	position: absolute;
 }
-#recent-posts .author-info{
+#recent-posts .author-info, #results .author-info{
 	height: 100%;
 }
 
-#recent-posts .author-info .author-image {
+#recent-posts .author-info .author-image , #results .author-info .author-image {
 	position: relative;
 	float: left;
 	margin-right: 14px;
@@ -312,18 +324,18 @@ header {
 	overflow: hidden;
 	line-height: 100%;
 }
-#recent-posts .author-info p {
+#recent-posts .author-info p, #results .author-info p {
 	font-family: 'Helvetica Neue';
 	font-size: 1.2vw;
 	height: 100%;
 	line-height: 2vw;
 }
-#recent-posts .text-right {
+#recent-posts .text-right, #results .text-right {
 	height: 100%;
 	margin: 0 auto;
 	line-height: 2vw;
 }
-#recent-posts .text-right a.button{
+#recent-posts .text-right a.button, #results .text-right a.button{
 	min-width: 30px;
 	width: 100%;
 	height: 80%;
@@ -446,7 +458,10 @@ header {
 }
 #template-post div.article-body a {
 	color: #2B2B2B;
-	text-decoration: underline;
+	text-decoration: none;
+	border-bottom: 2px solid #888;
+}
+
 }
 #template-post div.article-body em {
 	color: #2B2B2B;
@@ -480,6 +495,7 @@ header {
 	text-align: center;
 	padding-bottom: 10px;
 	padding-top: 20px;
+	padding-right: 20px;
 	border: 1px solid darkgray;	
 }
 #info-section .author-details {
@@ -494,20 +510,75 @@ header {
 }
 #info-section .related-articles h1 {
 	font-family: 'Helvetica Neue';
-	font-size: 2vw;
+	font-size: 1.8vw;
 	font-weight:600;
 	line-height: 4vw;
 	max-width: 768px;
 }
 #info-section .related-articles h2 {
-	font-size: 1.6vw;
-	line-height: 3vw;
+	font-size: 1.4vw;
+	line-height: 2.5vw;
 	margin-top: 0px;
 	margin-bottom: 0px;
 	text-align: left;
 }
 
 
+article {
+	color : #2B2B2B !important;
+	font-weight: normal !important;
+}
+/*================  Search Results  width > 1268 =================*/
+#results {
+	width : 1268px;
+	margin: 40px auto;
+	min-height: 200px;
+}
+#results article {
+	width : 33%;
+	height: 300px;
+	margin : 0px 0px;
+	margin-bottom: 40px;
+	padding : 0px 40px;
+}
+#results div.featured-preview .description-bar a {
+	font-family: 'Helvetica Neue';
+    font-size: 16px;
+    color: white;
+    -webkit-align-items: center;
+    align-items: center;
+    height: 100%;
+    display: -webkit-flex;
+    display: flex;
+}
+#results .author-info p {	
+	font-family: 'Helvetica Neue';
+	font-size: 18px;
+	line-height: 2vw;
+}
+#results .text-right a.button {
+    min-width: 30px;
+    width: 100%;
+    height: 24px;
+    line-height: 24px;
+    font-size: 18px;
+    min-height: 10px;
+    border-radius: 0px;
+}
+#results .article-body p {
+	line-height: 20px;
+	max-height: 40px;
+	font-family: 'Helvetica Neue';
+	font-size: 16px;
+	margin: 0px;
+	padding : 0px 10px;
+	white-space: normal;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-line-clamp: 2;
+	display: -webkit-box;
+    -webkit-box-orient: vertical;    
+}
 /*================  width : 768 ~ 1268  ===============*/
 @media screen and (max-width: 1268px) {	
 	#no-touch-navigation-top div.left-area ul {
@@ -568,6 +639,24 @@ header {
 		margin-bottom: 0px;
 	}
 
+	#results {
+		width : 768px;
+		margin: 40px auto;
+	}
+	#results article{
+		width : 50%;
+		height: 300px;
+		margin : 0px 0px;
+		margin-bottom: 30px;
+		padding : 0px 30px;
+	}
+	#results div.featured-preview .description-bar a, #results .article-body p {
+		font-size: 16px;
+	}
+	#results .author-info p {
+		font-size: 18px;
+	}
+	
 
 }
 @media screen and (max-width: 980px) {
@@ -614,31 +703,31 @@ header {
 	#hot-articles .article-summary {
 	    padding: 2px 30px;
 	}
-	#template-index div.row div.two-third-percent div#recent-posts .recent-article {
-		width: 100%;
+	#template-index div.row div.two-third-percent div#recent-posts .recent-article{
+		width: 100%; 
 		height: 55vw;
 		padding-left: 0px;
 		padding-right: 0px;
 		margin-top: 4vw;
 	}	
-	#recent-posts div.featured-preview .description-bar a {
+	#recent-posts div.featured-preview .description-bar a, #results div.featured-preview .description-bar a {
 		font-size: 2.5vw;
 	}
-	#recent-posts .article-body p {
+	#recent-posts .article-body p,  #results .article-body p{
 		font-size: 2.3vw;
 	}
-	#recent-posts .article-footer {
-		 height: 7vw;
+	#recent-posts .article-footer{
+		 height: 6vw;
 	}
-	#recent-posts .author-info .author-image {
-		width: 7vw;
-		border-radius: 7vw;
+	#recent-posts .author-info .author-image , #results .author-info .author-image {
+		width: 6vw;
+		border-radius: 6vw;
 	}
 	#recent-posts .author-info p {
-		line-height: 7vw;
+		line-height: 6vw;
 		font-size: 4vw;
 	}
-	#recent-posts .text-right a.button {  
+	#recent-posts .text-right a.button, #results .text-right a.button{  
 	    line-height: 5vw;
 	    font-size: 3vw;
 	}
@@ -679,6 +768,42 @@ header {
 	#template-post #info-section .related-articles h2 {
 		font-size: 2.5vw;
 	}
+
+	#results {
+		width : 420px;
+		margin: 40px auto;
+	}
+	#results article {
+		width : 100%;
+		height: 35vh;
+		margin : 0px 0px;
+		margin-bottom: 30px;
+		padding : 0px 30px;
+	}
+	#results div.featured-preview .description-bar a, #results .article-body p {
+		font-size: 16px;
+	}
+	#results .author-info p {
+		font-size: 18px;
+		line-height: 36px;
+	}
+	#results .article-footer {
+		height: 36px;
+	}
+	
+	#results .author-info .author-image {
+		width: 36px;
+		border-radius: 36px;
+	}	
+	#results .text-right a.button{  
+	    line-height: 24px;
+	    font-size: 18px;
+	    height: 24px;
+	    margin-top: 6px;
+	}
+	#result .text-right {
+		line-height: 36px;
+	}
 }
 /*============== Phone Size ===============*/
 @media screen and (max-width: 480px) {
@@ -709,5 +834,22 @@ header {
 		font-size: 4vw;
 		line-height: 6vw;
 		margin-bottom: 12px;
+	}
+	#results {
+		width : 100%;
+		margin: 20px auto;
+	}
+	#results article {
+		width : 100%;
+		height: 70vw;
+		margin : 0px 0px;
+		margin-bottom: 20px;
+		padding : 0px 20px;
+	}
+	#results div.featured-preview .description-bar a {
+		font-size: 13px;
+	}
+	#results .author-info p {
+		font-size: 14px;
 	}
 }

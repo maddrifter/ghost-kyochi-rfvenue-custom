@@ -1,0 +1,106 @@
+{{! Kyochi v1.4, Copyright 2014, Cloud Eight, http://www.cloud-eight.com }}
+
+
+{{! Pull default.hbs markup - DO NOT REMOVE }}
+	{{!< default}}
+
+
+{{! Page }}
+	<main id="template-page-search" class="clearfix" role="main" >
+	
+		<div id="results" class="row">
+		</div>		
+		<div class="container bm-larger tm-larger pagination-container animate-in">
+			<div class="one-whole bm-remove">
+				<a href="javascript:history.go(-1)" target="_self" class="button text-uppercase">Return To Previous Page</a>
+			</div>
+		</div>
+	</main>
+
+	
+
+
+
+	<script>
+		$(function() {
+			var results = JSON.parse(localStorage.getItem('results'));
+			
+			var promises = [];
+
+			for (var i = 0; i < results.length; i++) {			
+				var img = getImage(results[i].markdown);
+				var authorId = results[i].authorId;				
+				promises.push(new Promise(function(resolve) {
+					getAuthor(authorId).then(function(authorInfo){
+						resolve(authorInfo);
+					});
+				}));
+			}
+
+			Promise.all(promises).then(function(response) {
+				console.log(response);
+				for (var i = 0; i < results.length; i++) {			
+					var img = getImage(results[i].markdown);
+					var authorInfo = response[i];
+					$('#results').append(
+						'<article class="'+((i % 2 == 0)? "odd article-odd" : "even article-even")+' one-half-percent recent-article">' + 
+							'<div class="full-parent">'+
+								'<div class="one-whole bm-remove  full-parent">'+
+									'<div class="bm-remove featured-preview">'+
+										'<a href="' + results[i].link + '" target="_self" class="block">'+ img +'</a>'+
+										'<div class="description-bar bm-remove"><a href="' + results[i].link +'" target="_self">'+results[i].title+'</a></div>' +										
+									'</div>'+
+									'<div class="desktop-tablet bm-remove alpha last">'+
+										'<div class="article-body">'+
+											'<p>'+results[i].description+'&hellip;</p>'+
+										'</div>'+
+										'<div class="article-footer">'+
+											'<div class="two-third-percent bm-remove author-info">'+
+												'<a href="/author/' + authorInfo.slug + '" target="_self" class="author-image"><img src="'+ authorInfo.image +'" alt="Author Image"></a>' + 
+												'<p class="bm-small" itemprop="name"><a href="/author/' + authorInfo.slug + '" target="_self">Author '+ authorInfo.name + '</a></p>' +	
+											'</div>'+
+											'<div class="one-third-percent text-right"><a href="' + results[i].link + '" target="_self" class="button w-large bm-remove text-uppercase">READ</a></div>'+
+										'</div>'+
+									'</div>'+
+								'</div>'+
+							'</div>'+
+						'</article>'
+					);
+				}
+			});
+
+
+			function getImage(markdownStr){
+				var converter = new showdown.Converter();
+				var html_content = converter.makeHtml(markdownStr);
+				var el = document.createElement('div');
+				el.innerHTML = html_content;
+				var firstchild = el.childNodes[0];
+				var img = firstchild.childNodes[0];
+				return img.outerHTML
+			}				
+
+			function getAuthor(authorId) {				
+				return new Promise(function(resolve, reject){					
+					$.get(ghost.url.api('users', {id: authorId})).done(function(data){
+						searchData = data.users;
+						if (searchData.length == 0) {
+							returnVal = {};
+							reject("no value")
+						} else {
+							returnVal = searchData[0];
+						}
+						resolve(returnVal);
+
+					}).fail(function(err){
+						console.log(err);
+						returnVal = {};
+						reject(err);
+					});
+				});
+		    }
+
+		})
+	</script>
+
+	

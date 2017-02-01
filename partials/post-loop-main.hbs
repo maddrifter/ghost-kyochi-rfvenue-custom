@@ -15,7 +15,7 @@
 
 		{{#foreach posts}}
 			<article class="{{#if @odd}} odd article-odd{{else}} even article-even{{/if}}{{#if @first}} first{{/if}}{{#if @last}} last{{/if}} one-half-percent recent-article">
-				<div class="animate-in full-parent" data-anim-type="fade-in" data-anim-delay="200">
+				<div class="animate-in full-parent">
 					<div class="one-whole bm-remove {{post_class}} full-parent">					
 						<div class="desktop-tablet bm-remove omega full-parent">
 							<div class="bm-remove featured-preview">
@@ -53,17 +53,18 @@
 		{{/foreach}}
  </div>
  {{/get}}
-{{!--  {{/get}}
- --}} <div id="featured-posts" class='row padding-container full-parent'>
+
+ {{#get "posts" limit="all" include="tags"}}
+ <div id="featured-posts" class='row padding-container full-parent'>
  	{{!-- <header>
 		<div class="container bm-remove tm-small">
 			<h1>Featured Posts</h1>
 		</div>dfsa
 	</header> --}}
 	{{#foreach posts}}
-		{{#if featured }}
+	{{#has tag="#top-featured"}}
 		<article class="padding-middle article{{#if @odd}} odd{{else}} even{{/if}}{{#if @first}} first{{/if}}{{#if @last}} last{{/if}} one-whole-article">
-			<div class="animate-in full-parent" data-anim-type="fade-in" data-anim-delay="200">
+			<div class="animate-in full-parent">
 				<div class="row no-padding full-parent desktop-tablet omega {{post_class}}">
 					<div class="featured-preview">						
 						<a href="{{url}}" target="_self" class="block">{{content words="0"}}</a>
@@ -73,10 +74,12 @@
  				</div>				
 			</div>
 		</article>
- 		{{/if}}
+	{{/has}}
 	{{/foreach}}
 
  </div>
+
+ {{/get}}
 	
 
 	

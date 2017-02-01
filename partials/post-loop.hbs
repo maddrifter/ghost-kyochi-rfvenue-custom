@@ -10,9 +10,9 @@
 	{{#foreach posts}}
 		{{#if featured }}
 		<article class="{{#if @odd}} odd{{else}} even{{/if}}{{#if @first}} first{{/if}}{{#if @last}} last{{/if}}">
-			<div class="container bm-larger tm-larger animate-in" data-anim-type="fade-in" data-anim-delay="200">
+			<div class="container bm-larger tm-larger animate-in">
 				<div class="one-whole bm-remove {{post_class}}">
-					<div class="featured-jewel cursor-pointer tip-t-fade animate-in" data-tooltip="Featured" data-anim-type="bounce-in" data-anim-delay="200"><i class="fa fa-star"></i></div>
+					<div class="featured-jewel cursor-pointer tip-t-fade animate-in" data-tooltip="Featured"><i class="fa fa-star"></i></div>
 
 					<div class="one-third-percent desktop-tablet bm-remove omega">
 						<div class="bm-remove featured-preview"><a href="{{url}}" target="_self" class="block">{{content words="0"}}</a></div>
@@ -40,7 +40,6 @@
 		{{/if}}
 	{{/foreach}}
 
-
 	<header>
 		<div class="container bm-remove tm-larger">
 			<h1>Recent Posts</h1>
@@ -50,7 +49,7 @@
 {{! Post Loop }}
 	{{#foreach posts}}
 		<article class="{{#if @odd}} odd{{else}} even{{/if}}{{#if @first}} first{{/if}}{{#if @last}} last{{/if}}">
-			<div class="container bm-larger tm-larger animate-in" data-anim-type="fade-in" data-anim-delay="200">
+			<div class="container bm-larger tm-larger animate-in">
 				<div class="one-whole bm-remove {{post_class}}">
 					<div class="featured-jewel cursor-pointer tip-t-fade animate-in" data-tooltip="Featured" data-anim-type="bounce-in" data-anim-delay="200"><i class="fa fa-star"></i></div>
 
